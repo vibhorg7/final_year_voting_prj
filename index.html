@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bank</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<body>
+<a href="./admin.html" style="align:right">Admin Page</a>
+    <div class="container">
+
+        <h1><center>BlockBank</center></h1>
+<br>
+
+<br>
+
+
+<br>
+       <label for="bank" class="col-lg-2 control-label">Deposit Money</label>
+        <input id="dep" type="text">
+<button id= "depositb">Deposit</button>
+
+       <label for="bank" class="col-lg-2 control-label">Withdraw Money</label>
+        <input id="withd" type="text">
+<button id="withdrawb">Withdraw</button>
+
+
+    <center>    <button id="enroll">Enroll</button></center>    
+
+<center>    <button id="balbutton">Check Balance</button></center>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+   	
+
+	        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+	
+	        web3.eth.defaultAccount = web3.eth.accounts[0];
+var BankContract = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "depositAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "deposit",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "enroll",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "withdrawAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "balance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]);
+
+
+        var Bank = BankContract.at('0x01cf17c91975c619f8ee123befb3d27580dde918');
+        console.log(Bank);
+
+
+
+
+        $("#enroll").click(function() {
+            Bank.enroll();
+        });
+        $("#depositb").click(function() {
+            Bank.deposit($("#dep").val());
+        });
+
+	        $("#withdrawb").click(function() {
+            Bank.withdraw($("#withd").val());
+        });
+
+	        $("#balbutton").click(function() {
+            alert("Balance is    "+Bank.balance());
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
