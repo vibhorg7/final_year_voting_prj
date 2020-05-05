@@ -4,38 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Login</title>
+    <title>EVote</title>
 
     <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
 
 </head>
 <body>
 
-    <div class="container">
 
-        <h1><center>Login</center></h1>
+        <h1><center>Elections Admin Panel</center></h1>
 <br>
 
-<form name="login">
-<label for >Username
-<input type="text" name="userid"/>
-Password<input type="password" name="pswrd"/>
-<input type="button" onclick="check(this.form)" value="Login"/>
-<input type="reset" value="Cancel"/>
-</form>
-<script language="javascript">
-function check(form)/*function to check userid & password*/
-{
- /*the following code checkes whether the entered userid and password are matching*/
- if(form.userid.value == "admin" && form.pswrd.value == "admin")
-  {
-    window.open('www.google.com')/*opens the target page while Id & password matches*/
-  }
- else
- {
-   alert("Error Password or Username")/*displays error message*/
-  }
+<br>
+
+
+<br>
+<label><input type ="radio" name="candidates" value=1>Candidate 1</label>
+<br><br>
+<label><input type ="radio" name="candidates" value=2>Candidate 2</label>
+<br><br>
+<label><input type ="radio" name="candidates" value=3>Candidate 3</label>
+<br><br>
+
+<center><button type="button" id="vote">Vote</button></center>
+
+
+
+<table id="vtable" style="width:50%">
+</table>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+   	
+
+	        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+	
+	        web3.eth.defaultAccount = web3.eth.accounts[5];
+var election = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_candidateId",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "candidates",
+		"outputs": [
+			{
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "voteCount",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "candidatesCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "voters",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]);
+
+
+        var ele = election.at('0xa90d9375bc4f00be15ad267c0e54f37351dc03e3');
+        console.log(ele);
+
+
+
+
+
+	        $("#vote").click(function() {
+            var radioValue = $("input[name='candidates']:checked").val();
+            if(radioValue){
+                alert("Your voted for " + radioValue);
+ele.vote(radioValue)
+
+
+            }
+        });
+
+setInterval("my_func()",3000);
+function my_func(){
+$('#vtable').html("");
+for (var i = 0; i < ele.candidatesCount(); i++) {
+  	res=ele.candidates(i+1)
+
+
+
+  $('#vtable').append('<tr><td>' + res[0] + '</td><td>' + res[1] + '</td><td>' +
+  res[2]+ '</td></tr>');
+
 }
-</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
 </body>
 </html>

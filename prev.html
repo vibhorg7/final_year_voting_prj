@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EVote</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<style>
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.jumbotron{width:1600px;}
+
+table, th, td {
+  border: 1px solid black;
+}
+table {
+  border-collapse: collapse;
+width: 50%;
+}
+td{
+height:50px;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+
+</style>
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">EVote</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="nav-item dropdown my-2 my-lg-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Previous Elections
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Worker Union Head Election</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">About us</a>
+        </div>
+      </div>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+    </form>
+  </div>
+</nav>
+<br><br>
+<center>
+<div class="jumbotron">
+
+<br>
+        <h1><center>Worker Union Head Election 2018-19</center></h1>
+<br>
+
+<br>
+
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="pp.png" alt="pp" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+      <p>Worker Welfare Party</p>
+      <p>Total Members - 100</p>
+    </div>
+  </div>
+
+</div>
+<br><br><br><br><br><br>
+<center><h2>Worker Welfare Party</h2></center>
+
+    </div>
+ 
+    <div class="col-sm">
+      <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="hs.jpeg" alt="hs" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+      <p>People Party</p>
+      <p>Total Members - 150</p>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br>
+<center><h2>People Party</h2></center>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<br><br><br><br><br>
+
+
+
+<br><br><br>
+<center>
+<div id="piechart">
+</div>
+</center>
+</div>
+<br><br>
+<h2>Statistics</h2>
+<br><br>
+<table>
+<tr>
+<th>Particulars</th><th>Details</th>
+</tr>
+<tr>
+<td><b>Date</b></td><td>12 DEC 2019</td>
+</tr>
+<tr>
+<td><b>Time</b></td><td>1:00 PM</td>
+</tr>
+<tr>
+<td><b>Number of Candidates</b></td><td>2</td>
+</tr>
+<tr>
+<td><b>Number of Voters</b></td><td>100</td>
+</tr>
+<tr>
+<td><b>Total number of Available Voters</b></td><td>150</td>
+</tr>
+<tr>
+<td><b>Worker Welfare Party Got</b></td><td>43 Votes</td>
+</tr>
+<tr>
+<td><b>People's Party Got</b></td><td>57 Votes</td>
+</tr>
+</table>
+<br><br>
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+drawChart();
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Candidate', 'Votes'],
+  ['Worker Welfare Party', 43],
+  ['People Party', 57]
+
+
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {title:'Votes', 'width':'550', 'height':'400',is3D:true};
+
+  // Display the chart inside the <div> element with id="piechart"
+ var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+
+
+</script>
+
+
+</body>
+
+
+</html>
